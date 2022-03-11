@@ -1,7 +1,28 @@
+import React,{ useState } from 'react';
 import './Login.scss';
-import './Login.css';
+import { useDispatch , useSelector } from "react-redux";
+import { login } from "../../redux/actions/index";
+import { useAlert } from 'react-alert'
+
 
 const Login = () => {
+    const alert = useAlert();
+    const dispatch = useDispatch();
+    const user = useSelector( (state) => state.userActions )
+    const [ userName , setuserName ] = useState("");
+    const [ password , setPassword ] = useState("");
+
+    const handleLogin = (event) =>{
+        event.preventDefault();
+        const User = { username : userName , password : password }
+        console.log(User);
+        dispatch(login(User));
+        if(user.loggedIn === true)
+            alert.success("Success Authentification");
+        else    
+            alert.error("Error Authentification")
+    }
+
     return ( 
         <div class="auth-wrapper">
             <div class="section-login">
@@ -20,14 +41,14 @@ const Login = () => {
                             </div>
                             <div class="mt-4">
                                 <div class="login p-4">
-                                    <form method="POST" action="{{ route('login') }}">
+                                    <form method="POST" onSubmit={handleLogin} >
                                         <div class="flex p-2 items-center">
                                             <i class="text-gray-600 fas fa-key fas-login"></i>
-                                            <input id="codeGRESA" type="text" class="w-full login-input" name="codeGRESA" placeholder="Code GRESA" value=""  autocomplete="codeGRESA" required />
+                                            <input id="codeGRESA" type="text" class="w-full login-input" placeholder="Code GRESA" value={userName} onChange={ (e) => setuserName(e.target.value) } required />
                                         </div>
                                         <div class="flex p-2 items-center my-3">
                                             <i class="text-gray-600 fas fa-lock fas-login"></i>
-                                            <input id="password" type="password" class="w-full login-input" name="password" placeholder="Mot de Passe" autocomplete="current-password" required />
+                                            <input id="password" type="password" class="w-full login-input" placeholder="Mot de Passe" value={password} onChange={ (e) => setPassword(e.target.value) } required />
                                         </div>
                                         <button type="submit" class="w-full btn btn-primary p-2">
                                             Se Connecter
