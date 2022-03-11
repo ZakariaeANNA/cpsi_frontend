@@ -12,7 +12,7 @@ function Header(){
                     <a href="@yield('application-link')">
                     <span className="app">
                         <span className="logo">
-                        <span className="app-logo hidden lg:block">Gestion de Parc Informatique</span>
+                        <span className="app-logo hidden lg:block"><i className="fas fa-laptop-code"></i>Gestion de Parc Informatique</span>
                         </span>
                     </span>
                     </a>
@@ -24,7 +24,7 @@ function Header(){
                     <div className="applications-block dropdown">
                         <span className="applications">
                             <span id="applications-block-toggle" className="icon applications-content" onclick="changeStat()">
-                                <img id="apps" src={'/img/svg/apps-svgrepo-com.svg'} alt='apps'/>
+                                <img id="apps" src={'img/svg/apps-svgrepo-com.svg'} alt='apps'/>
                             </span>
                             <div id="applications-block-content" className="dropdown-content right: 10px; width:250px;">
                             <div className="dropdown-header">

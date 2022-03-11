@@ -3,9 +3,10 @@ import './Login.scss';
 import { useDispatch , useSelector } from "react-redux";
 import { login } from "../../redux/actions/index";
 import { useAlert } from 'react-alert'
-
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
+    const history = useHistory();
     const alert = useAlert();
     const dispatch = useDispatch();
     const user = useSelector( (state) => state.userActions )
@@ -18,7 +19,7 @@ const Login = () => {
         console.log(User);
         dispatch(login(User));
         if(user.loggedIn === true)
-            alert.success("Success Authentification");
+            history.replace("/")
         else    
             alert.error("Error Authentification")
     }

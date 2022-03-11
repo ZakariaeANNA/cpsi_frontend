@@ -1,4 +1,3 @@
-import { useAlert } from 'react-alert'
 
 const login = (user) => {
     if(user.username === "Admin" && user.password === "123456"){

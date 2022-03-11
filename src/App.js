@@ -1,16 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
 import Login from "./Components/Login/Login";
-import Header from './Components/header/header';
-import SideBar from './Components/SideBar/SideBar';
-import Dashboard from "./Components/Dashboard/Dashboard"
-import Infrastructure from './Components/IT infrastructure/Infrastructure';
+import Home from "./Home";
+import { BrowserRouter as Router , Route , Switch } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-       <Login />
-    </div>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path="/login" >
+            <Login />
+          </Route>
+          <Route exact path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+    
   );
 }
 
