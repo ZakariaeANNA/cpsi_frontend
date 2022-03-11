@@ -12,7 +12,7 @@ function Header(){
                     <a href="@yield('application-link')">
                     <span className="app">
                         <span className="logo">
-                        <span className="app-logo hidden lg:block">Gestion de Parc Informatique</span>
+                        <span className="app-logo hidden lg:block"><i className="fas fa-laptop-code"></i>Gestion de Parc Informatique</span>
                         </span>
                     </span>
                     </a>
