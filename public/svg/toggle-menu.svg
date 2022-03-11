@@ -1,0 +1,19 @@
+<svg id="toggle-menu" xmlns="http://www.w3.org/2000/svg" width="474.118" height="430.014" viewBox="0 0 430 390">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="bottom">
+    <rect id="_4" data-name="4" class="cls-1" x="38" y="292" width="225" height="37" rx="12.5" ry="12.5"/>
+  </g>
+  <g id="middle">
+    <rect id="_2" data-name="2" class="cls-1" x="38" y="216" width="313" height="37" rx="12.5" ry="12.5"/>
+    <rect id="_1" data-name="1" class="cls-1" x="37" y="137" width="356" height="37" rx="12.5" ry="12.5"/>
+  </g>
+  <g id="top">
+    <rect id="_1-2" data-name="1" class="cls-1" x="37" y="61" width="269" height="37" rx="12.5" ry="12.5"/>
+  </g>
+</svg>

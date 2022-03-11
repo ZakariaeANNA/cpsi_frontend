@@ -24,7 +24,7 @@ function Header(){
                     <div className="applications-block dropdown">
                         <span className="applications">
                             <span id="applications-block-toggle" className="icon applications-content" onclick="changeStat()">
-                                <img id="apps" src={'/img/svg/apps-svgrepo-com.svg'} alt='apps'/>
+                                <img id="apps" src={'img/svg/apps-svgrepo-com.svg'} alt='apps'/>
                             </span>
                             <div id="applications-block-content" className="dropdown-content right: 10px; width:250px;">
                             <div className="dropdown-header">
