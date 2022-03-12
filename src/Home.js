@@ -8,7 +8,8 @@ import { BrowserRouter as Router , Route , Switch } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import DetailsInfrastructure from "./Components/IT infrastructure/DetailsInfrastructure/DetailsInfrastructure";
-
+import Overview from "./Components/Overview/overview";
+import AddUser from './Components/Users/addUsers'
 function Home() {
 
     const user = useSelector( (state) => state.userActions )
@@ -37,6 +38,13 @@ function Home() {
                 <Route path="/Details">
                     <DetailsInfrastructure />
                 </Route>
+            
+            <Route path={"/overview"}>
+                <Overview/>
+            </Route>
+            <Route path={"/allUsers"}>
+                <AddUser/>
+            </Route>
             </Switch>
         </div>
         </Router>    
