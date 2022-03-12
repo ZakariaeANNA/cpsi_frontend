@@ -73,7 +73,7 @@ const Dashboard = () => {
                                                     <span>
                                                         545
                                                         <span className="success-value mx-1 text-sm">
-                                                            @php echo '('.round($result,2) . "%)"; @endphp
+                                                            (67,5%)
                                                         </span>
                                                     </span>
                                                     </span>
@@ -89,7 +89,7 @@ const Dashboard = () => {
                                                             <span>
                                                                 454
                                                                 <span className="danger-value mx-1 text-sm">
-                                                                    @php echo '('.round($result,2) . "%)"; @endphp
+                                                                   (37,5%)
                                                                 </span>
                                                             </span>
                                                         </div>

@@ -7,6 +7,7 @@ import Statistics from './Components/statistics/statistics';
 import { BrowserRouter as Router , Route , Switch } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import DetailsInfrastructure from "./Components/IT infrastructure/DetailsInfrastructure/DetailsInfrastructure";
 
 function Home() {
 
@@ -24,15 +25,18 @@ function Home() {
             <SideBar />
             <Header />
             <Switch>
-            <Route exact path="/" >
-                <Dashboard />
-            </Route>
-            <Route path="/infrastructure">
-                <Infrastructure />
-            </Route>
-            <Route path="/statistics">
-                <Statistics />
-            </Route>
+                <Route exact path="/" >
+                    <Dashboard />
+                </Route>
+                <Route path="/infrastructure">
+                    <Infrastructure />
+                </Route>
+                <Route path="/statistics">
+                    <Statistics />
+                </Route>
+                <Route path="/Details">
+                    <DetailsInfrastructure />
+                </Route>
             </Switch>
         </div>
         </Router>    

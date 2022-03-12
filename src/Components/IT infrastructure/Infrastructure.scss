@@ -23,6 +23,12 @@ $gray:#8b8b8b;
 $chart-color: rgba(108, 113, 249, 0.267);
 $border-chart-color: rgba(108, 113, 249, 0.795);
 
+.MuiDataGrid-colCellTitle {
+  display: block;
+  text-align:center;
+  width: 100%;
+}
+
 // admin area
 .welcome-area{
     margin-bottom: 35px;
