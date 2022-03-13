@@ -9,7 +9,7 @@ const SideBar = () => {
     const handleDisplay = () => {
         setDisplay(!Display)
     }
-
+   
     return (
             <div className="sidebar text-center hidden lg:block">
                 <div className="top-menu">

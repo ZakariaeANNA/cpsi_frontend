@@ -1,8 +1,24 @@
 import React from "react";
 import './statistics.scss'
-
+import { DataGrid } from "@mui/x-data-grid";
 
 function Statistics(){
+    const columns = [
+            {field: "id",headerName: "ID",headerAlign : 'center'},
+            {field: "Typedequipement",headerName: "Type d'equipement informatique", flex: 1 ,headerAlign : 'left'},
+            {field: "NombreTotal",headerName: "Nombre Total", flex: 1 ,headerAlign : 'center'},
+            {field: "Nombrefonctionne" ,headerName: "Nombre Total qui fonctionne", flex: 1 ,headerAlign : 'left'},
+            {field: "Nombrefonctionnepas" ,headerName: "Nombre Total qui ne fonctionne pas", flex: 1 ,headerAlign : 'left'}
+    ]
+    const rows = [
+        {id: 1, Typedequipement: 'equipement 1',NombreTotal: 25, Nombrefonctionne: 20, Nombrefonctionnepas: 5},
+        {id: 2, Typedequipement: 'equipement 2',NombreTotal: 15, Nombrefonctionne: 15, Nombrefonctionnepas: 0},
+        {id: 3, Typedequipement: 'equipement 3',NombreTotal: 20, Nombrefonctionne: 17, Nombrefonctionnepas: 3},
+        {id: 4, Typedequipement: 'equipement 4',NombreTotal: 25, Nombrefonctionne: 20, Nombrefonctionnepas: 5},
+        {id: 5, Typedequipement: 'equipement 5',NombreTotal: 25, Nombrefonctionne: 20, Nombrefonctionnepas: 5},
+        {id: 6, Typedequipement: 'equipement 6',NombreTotal: 25, Nombrefonctionne: 20, Nombrefonctionnepas: 5},
+        {id: 7, Typedequipement: 'equipement 7',NombreTotal: 25, Nombrefonctionne: 20, Nombrefonctionnepas: 5},
+    ]
     return(
         <div className="container" id="statistiques">
             <div className='section-admin'>
@@ -227,28 +243,14 @@ function Statistics(){
                         </span> 
                     </h6>
                     <div className="outer-block-body text-center">
-                        <div className="">
-                            <table className="min-w-full text-center p-2 font-size: 15px">
-                                <thead>
-                                <tr className="font-semibold text-gray-700">
-                                    <th scope="col"><span>Type d'équipement d'informatique</span></th>
-                                    <th scope="col"><span>Nombre Total</span></th>
-                                    <th scope="col"><span>Nombre Total qui fonctionne</span></th>
-                                    <th scope="col"><span>Le nombre Total ne fonctionne pas</span></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <tr className="hover:bg-gray-100">
-                                        <td>test</td>
-                                        <td className='font-semibold'>". </td>
-                                        <td>0</td>
-                                        <td className='font-semibold'>". $output ."</td>
-                                    </tr>
-                                    <tr className="hover:bg-gray-100">
-                                        <td>test1</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div className="" style={{ height: 400, width: '100%' , textAlign: "center" }}>
+                        <DataGrid
+                            rows={rows}
+                            columns={columns}
+                            pageSize={5}
+                            rowsPerPageOptions={[5]}
+                            checkboxSelection
+                        />
                         </div>
                     </div>
                 </div>

@@ -1,15 +1,15 @@
 import React , { useEffect } from "react";
 import Infrastructure from './Components/IT infrastructure/Infrastructure';
-import Header from './Components/header/header';
+import Header from './Components/Header/header';
 import SideBar from './Components/SideBar/SideBar';
 import Dashboard from "./Components/Dashboard/Dashboard"
-import Statistics from './Components/statistics/statistics';
+import Statistics from './Components/Statistics/statistics';
 import { BrowserRouter as Router , Route , Switch } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import DetailsInfrastructure from "./Components/IT infrastructure/DetailsInfrastructure/DetailsInfrastructure";
 import Overview from "./Components/Overview/overview";
-import AddUser from './Components/Users/addUsers'
+import AllUsers from "./Components/Users/allUsers";
 function Home() {
 
     const user = useSelector( (state) => state.userActions )
@@ -43,7 +43,7 @@ function Home() {
                 <Overview/>
             </Route>
             <Route path={"/allUsers"}>
-                <AddUser/>
+                <AllUsers/>
             </Route>
             </Switch>
         </div>
