@@ -24,28 +24,30 @@ function Home() {
         <Router>
         <div className="Home">
             <SideBar />
+            <div style={{ display : "table-cell" , verticalAlign : "top" , width : "100%" }}>
             <Header />
-            <Switch>
-                <Route exact path="/" >
-                    <Dashboard />
+                <Switch>
+                    <Route exact path="/" >
+                        <Dashboard />
+                    </Route>
+                    <Route path="/infrastructure">
+                        <Infrastructure />
+                    </Route>
+                    <Route path="/statistics">
+                        <Statistics />
+                    </Route>
+                    <Route path="/Details">
+                        <DetailsInfrastructure />
+                    </Route>
+                
+                <Route path={"/overview"}>
+                    <Overview/>
                 </Route>
-                <Route path="/infrastructure">
-                    <Infrastructure />
+                <Route path={"/allUsers"}>
+                    <AddUser/>
                 </Route>
-                <Route path="/statistics">
-                    <Statistics />
-                </Route>
-                <Route path="/Details">
-                    <DetailsInfrastructure />
-                </Route>
-            
-            <Route path={"/overview"}>
-                <Overview/>
-            </Route>
-            <Route path={"/allUsers"}>
-                <AddUser/>
-            </Route>
-            </Switch>
+                </Switch>
+            </div> 
         </div>
         </Router>    
     );

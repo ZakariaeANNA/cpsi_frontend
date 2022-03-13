@@ -34,18 +34,13 @@ $border-chart-color: rgba(108, 113, 249, 0.795);
     // box-shadow: 0 3px 6px 0 rgb(83 25 56 / 1%);
     border-bottom: 1px solid lighten($color: $border-color, $amount: 80%);
     background-color: $fifth-color;
-    display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
     height: 56px;
     transition: width .1s;
     //
-    padding: 0px 1% 0px 7%;
     box-shadow: 0 0 10px $frame-shadow;
-    position: sticky; /* full fixed */
     top: 0;
-    z-index: 1; /* Layer order */
   
     .left-side{
       float: left;
