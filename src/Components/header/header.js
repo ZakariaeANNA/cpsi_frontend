@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import './header.scss'
 
@@ -26,6 +26,23 @@ function Header(){
         document.querySelector('#applications-block-content').classList.remove('active')
     }
     document.body.addEventListener('click',hideToggles,true)
+    const [title,setTitle] = useState('Gestion de Parc Informatique')
+    const [icon,setIcon] = useState('fas fa-laptop-code')
+    function changeTitles(id){
+        if(id==="GestionFormation" )
+        {
+            setTitle('Gestion des Formations')
+            setIcon('fas fa-book')
+        }else if(id==='GestionUtilisateur')
+        {
+            setIcon('far fa-user-circle')
+            setTitle('Gestion des Utilisateurs')
+        }else
+        {
+            setIcon('fas fa-laptop-code')
+            setTitle('Gestion Parc Informatique')
+        }
+    }
     return(
         <header className="app-header">
             <div className="left-side">
@@ -34,7 +51,7 @@ function Header(){
                     <a href="@yield('application-link')">
                     <span className="app">
                         <span className="logo">
-                        <span className="app-logo hidden lg:block"><i className="fas fa-laptop-code"></i>Gestion de Parc Informatique</span>
+                        <span className="app-logo hidden lg:block"><i className={icon}></i>{title}</span>
                         </span>
                     </span>
                     </a>
@@ -51,36 +68,36 @@ function Header(){
                             <div id="applications-block-content" className="dropdown-content right: 10px; width:250px;">
                             <div className="dropdown-header">
                                 <ul className="dropdown-list">
-                                <li className="with-icon">
-                                    <Link to={"/"}>
-                                        <a className="transform hover:translate-x-1 transition duration-300" target="_blank" href="{{ route('home.index') }}">
-                                            <div className="flex justify-start items-center">
-                                            <div><img src={'../svg/laptop-svgrepo-com.svg'} className="h-4 mr-4" alt=""/></div>
-                                            <span className="text-sm">Gestion Parc Informatique</span>
-                                            </div>
-                                        </a>
-                                    </Link>
-                                </li>
+                                    <li className="with-icon" onClick={()=>changeTitles("GestionParc")}>
+                                        <Link to={"/"}>
+                                            <a className="transform hover:translate-x-1 transition duration-300" target="_blank" href="{{ route('home.index') }}">
+                                                <div className="flex justify-start items-center">
+                                                <div><img src={'../svg/laptop-svgrepo-com.svg'} className="h-4 mr-4" alt=""/></div>
+                                                <span className="text-sm">Gestion Parc Informatique</span>
+                                                </div>
+                                            </a>
+                                        </Link>
+                                    </li>
                                 </ul>
                             </div>
                             <div className="dropdown-header">
                                 <ul className="dropdown-list">
-                                <li className="with-icon">
-                                    <Link to={"/allUsers"}>
-                                        <a className="transform hover:translate-x-1 transition duration-300" target="_blank" 
-                                        href="{{ route('admin.formations.index') }}">
-                                            <div className="flex justify-start items-center">
-                                            <div><img src={'../svg/notebook-svgrepo-com.svg'} className="h-4 mr-4" alt=""/></div>
-                                            <span className="text-sm">Gestion des Formations</span>
-                                            </div>
-                                        </a>
-                                    </Link>
-                                </li>
+                                    <li className="with-icon" onClick={()=>changeTitles("GestionFormation")} >
+                                        <Link to={"/allUsers"}>
+                                            <a className="transform hover:translate-x-1 transition duration-300" target="_blank" 
+                                            href="{{ route('admin.formations.index') }}">
+                                                <div className="flex justify-start items-center">
+                                                <div><img src={'../svg/notebook-svgrepo-com.svg'} className="h-4 mr-4" alt=""/></div>
+                                                <span className="text-sm">Gestion des Formations</span>
+                                                </div>
+                                            </a>
+                                        </Link>
+                                    </li>
                                 </ul>
                             </div>
                             <div className="dropdown-body">
                                 <ul className="dropdown-list">
-                                <li className="with-icon">
+                                <li className="with-icon" onClick={()=>changeTitles("GestionUtilisateur")}>
                                     <Link to={"/overview"}>
                                         <a className="transform hover:translate-x-1 transition duration-300" target="_blank" href="{{route('admin.users.index.overview')}}">
                                         <div className="flex justify-start items-center">

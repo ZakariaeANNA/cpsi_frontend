@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import DetailsInfrastructure from "./Components/IT infrastructure/DetailsInfrastructure/DetailsInfrastructure";
 import Overview from "./Components/Overview/overview";
-import AddUser from './Components/Users/addUsers'
+import AllUsers from "./Components/Users/allUsers";
 function Home() {
 
     const user = useSelector( (state) => state.userActions )
@@ -25,7 +25,7 @@ function Home() {
         <div className="Home">
             <SideBar />
             <div style={{ display : "table-cell" , verticalAlign : "top" , width : "100%" }}>
-            <Header />
+                <Header />
                 <Switch>
                     <Route exact path="/" >
                         <Dashboard />
@@ -44,10 +44,10 @@ function Home() {
                     <Overview/>
                 </Route>
                 <Route path={"/allUsers"}>
-                    <AddUser/>
+                    <AllUsers/>
                 </Route>
                 </Switch>
-            </div> 
+            </div>
         </div>
         </Router>    
     );
