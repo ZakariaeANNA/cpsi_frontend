@@ -515,7 +515,6 @@ const DetailsInfrastructure = () => {
                                 </div>
                                 <button class="btn btn-primary px-4 ml-1 h-10"  ><i class="fas fa-times"></i></button>
                             </div>
-                            
                             <div style={{ height: 400, width: '100%' }}>
                                 <DataGrid
                                     rows={rows}
