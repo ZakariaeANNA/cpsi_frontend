@@ -1,16 +1,17 @@
 import "../Infrastructure.scss";
-import { School , Visibility , Edit , Delete , PowerSettingsNew , ChangeCircle } from "@mui/icons-material";
+import "./DetailsInfrastructure.scss"
+import { School , Visibility , Edit , Delete , PowerSettingsNew , ChangeCircle, RowingRounded } from "@mui/icons-material";
 import { DataGrid } from '@mui/x-data-grid';
 import React,{ useState } from "react";
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
+import { TextField } from "@mui/material";
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Dialog from '@mui/material/Dialog';
@@ -20,7 +21,14 @@ import DialogActions from '@mui/material/DialogActions';
 import CloseIcon from '@mui/icons-material/Close';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
-
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -29,7 +37,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogActions-root': {
       padding: theme.spacing(1),
     },
-  }));
+}));
   
 const BootstrapDialogTitle = (props) => {
     const { children, onClose, ...other } = props;
@@ -77,46 +85,81 @@ const DetailsModal = ({params}) => {
         </IconButton>
         <BootstrapDialog
           onClose={handleClose}
-          aria-labelledby="customized-dialog-title"
           open={open}
+          fullWidth
+          maxWidth="md"
         >
           <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-            Modal title
+            Details de matérial
           </BootstrapDialogTitle>
           <DialogContent dividers>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                    <TableRow>
-                        <TableCell>Dessert (100g serving)</TableCell>
-                        <TableCell align="right">Calories</TableCell>
-                        <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                        <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                        <TableCell align="right">Protein&nbsp;(g)</TableCell>
-                    </TableRow>
-                    </TableHead>
                     <TableBody>
-                        <TableRow
-                        key={params.id}
-                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                        <TableCell component="th" scope="row">
-                            {params.departement}
-                        </TableCell>
-                        <TableCell align="right">{params.nInventaire}</TableCell>
-                        <TableCell align="right">{params.typeParc}</TableCell>
-                        <TableCell align="right">{params.marque}</TableCell>
-                        <TableCell align="right">{params.salle}</TableCell>
+                        <TableRow>
+                            <TableCell style={{ fontWeight : "bold" }}>ID</TableCell>
+                            <TableCell component="th" scope="row">
+                                {params.id}
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell style={{ fontWeight : "bold" }}>Departement</TableCell>
+                            <TableCell component="th" scope="row">
+                                {params.departement}
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell style={{ fontWeight : "bold" }}>N. Inventaire</TableCell>
+                            <TableCell component="th" scope="row">
+                                {params.nInventaire}
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell style={{ fontWeight : "bold" }}>Type Parc</TableCell>
+                            <TableCell component="th" scope="row">
+                                {params.typeParc}
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell style={{ fontWeight : "bold" }}>Marque</TableCell>
+                            <TableCell component="th" scope="row">
+                                {params.marque}
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell style={{ fontWeight : "bold" }}>Salle</TableCell>
+                            <TableCell component="th" scope="row">
+                                {params.salle}
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell style={{ fontWeight : "bold" }}>Stockage</TableCell>
+                            <TableCell component="th" scope="row">
+                                {params.stockage}
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell style={{ fontWeight : "bold" }}>RAM</TableCell>
+                            <TableCell component="th" scope="row">
+                                {params.ram}
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell style={{ fontWeight : "bold" }}>CPU</TableCell>
+                            <TableCell component="th" scope="row">
+                                {params.cpu}
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell style={{ fontWeight : "bold" }}>Source</TableCell>
+                            <TableCell component="th" scope="row">
+                                {params.source}
+                            </TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>
             </TableContainer>
           </DialogContent>
-          <DialogActions>
-            <Button autoFocus onClick={handleClose}>
-              Save changes
-            </Button>
-          </DialogActions>
         </BootstrapDialog>
       </div>
     );
@@ -141,25 +184,61 @@ const EditModal = ({params}) => {
           onClose={handleClose}
           aria-labelledby="customized-dialog-title"
           open={open}
+          fullWidth
+          maxWidth="md"
         >
           <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
             Modal title
           </BootstrapDialogTitle>
           <DialogContent dividers>
-            <Typography gutterBottom>
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-              dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-              consectetur ac, vestibulum at eros.
-            </Typography>
-            <Typography gutterBottom>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-              Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-            </Typography>
-            <Typography gutterBottom>
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-              magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-              ullamcorper nulla non metus auctor fringilla.
-            </Typography>
+            <form className="p">
+                <TextField id="outlined-basic" label="La Salle" variant="outlined" fullWidth/>
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        label="Type d'équipement informatique"
+                    >
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                    </Select>
+                </FormControl>
+                <TextField id="outlined-basic" label="Marque et spécification" variant="outlined" fullWidth/>
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Fonctionnalité</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        label="Type d'équipement informatique"
+                    >
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                    </Select>
+                </FormControl>
+                <TextField id="outlined-basic" label="N inventaire" variant="outlined" fullWidth/>
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Source</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        label="Type d'équipement informatique"
+                    >
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                    </Select>
+                </FormControl>
+                <LocalizationProvider dateAdapter={AdapterDateFns} >
+                    <DatePicker
+                        fullWidth
+                        label="La date de réception"
+                        renderInput={(params) => <TextField {...params} />}
+                    />
+                </LocalizationProvider>
+            </form>
           </DialogContent>
           <DialogActions>
             <Button autoFocus onClick={handleClose}>
@@ -190,24 +269,16 @@ const DeleteModal = ({params}) => {
           onClose={handleClose}
           aria-labelledby="customized-dialog-title"
           open={open}
+          
+          fullWidth
+          maxWidth="md"
         >
           <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
             Modal title
           </BootstrapDialogTitle>
           <DialogContent dividers>
             <Typography gutterBottom>
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-              dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-              consectetur ac, vestibulum at eros.
-            </Typography>
-            <Typography gutterBottom>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-              Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-            </Typography>
-            <Typography gutterBottom>
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-              magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-              ullamcorper nulla non metus auctor fringilla.
+              Vous etes sure que vous pouvez supprimer le matérial ?
             </Typography>
           </DialogContent>
           <DialogActions>
@@ -239,25 +310,33 @@ const PanneModal = ({params}) => {
           onClose={handleClose}
           aria-labelledby="customized-dialog-title"
           open={open}
+          fullWidth
+          maxWidth="md"
         >
           <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-            Modal title
+            Déclaration Intervention
           </BootstrapDialogTitle>
           <DialogContent dividers>
-            <Typography gutterBottom>
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-              dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-              consectetur ac, vestibulum at eros.
-            </Typography>
-            <Typography gutterBottom>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-              Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-            </Typography>
-            <Typography gutterBottom>
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-              magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-              ullamcorper nulla non metus auctor fringilla.
-            </Typography>
+            <form className="p">
+                <label>La Nature d'intervention</label>
+                <TextareaAutosize
+                    aria-label="maximum height"
+                    placeholder="Maximum 4 rows"
+                    defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                        ut labore et dolore magna aliqua."
+                    fullWidth
+                />
+                <label>Qui est Intervenent ?</label>
+                <TextField id="outlined-basic" label="Marque et spécification" variant="outlined" fullWidth/>
+                <label>Date d'intervention</label>
+                <LocalizationProvider dateAdapter={AdapterDateFns} >
+                    <DatePicker
+                        fullWidth
+                        label="La date de réception"
+                        renderInput={(params) => <TextField {...params} />}
+                    />
+                </LocalizationProvider>
+            </form>
           </DialogContent>
           <DialogActions>
             <Button autoFocus onClick={handleClose}>
@@ -288,25 +367,45 @@ const ChangerModal = ({params}) => {
           onClose={handleClose}
           aria-labelledby="customized-dialog-title"
           open={open}
+          fullWidth
+          maxWidth="lg" 
         >
           <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-            Modal title
+            Mettre à la département
           </BootstrapDialogTitle>
           <DialogContent dividers>
-            <Typography gutterBottom>
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-              dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-              consectetur ac, vestibulum at eros.
-            </Typography>
-            <Typography gutterBottom>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-              Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-            </Typography>
-            <Typography gutterBottom>
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-              magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-              ullamcorper nulla non metus auctor fringilla.
-            </Typography>
+          <form className="p">
+            <div className="flex flex-row items-center">
+                <label className="pr-4">Fonctionnalité</label>
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Fonctionnalité</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        label="Fonctionnalité"
+                    >
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
+            <div className="flex flex-row items-center">
+                <label className="pr-4">Source</label>
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Source</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        label="Source"
+                    >
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
+            </form>
           </DialogContent>
           <DialogActions>
             <Button autoFocus onClick={handleClose}>
@@ -324,21 +423,17 @@ const ChangerModal = ({params}) => {
 const DetailsInfrastructure = () => {
 
     const columns = [
-        { field: 'departement', headerName: 'Departement', flex : 1 },
-        { field: 'nInventaire', headerName: 'N Inventaire', flex : 1 },
-        { field: 'typeParc', headerName: 'Type Parc', flex : 1 },
-        { field: 'salle', headerName: 'Salle', flex : 1 },
-        { field: 'marque', headerName: 'Marque',sortable: false, flex : 1 },
-        { field: 'ram', headerName: 'RAM',sortable: false, flex : 1 },
-        { field: 'cpu', headerName: 'CPU',sortable: false, flex : 1 },
-        { field: 'dateDereception', headerName: 'Date de réception',sortable: false, flex : 1 },
-        { field: 'source', headerName: 'Source',sortable: false, flex : 1 },
+        { field: 'departement', headerName: 'Departement', flex : 1 , headerAlign : "center"},
+        { field: 'nInventaire', headerName: 'N Inventaire', flex : 1 , headerAlign : "center"},
+        { field: 'typeParc', headerName: 'Type Parc', flex : 1 , headerAlign : "center"},
+        { field: 'salle', headerName: 'Salle', flex : 1 , headerAlign : "center"},
+        { field: 'marque', headerName: 'Marque',sortable: false, flex : 1 , headerAlign : "center"},
         {
-            field : "Details" , headerName : "Details" , flex : 1 ,
+            field : "Details" , headerName : "Details" , flex : 1 , headerAlign : "center" ,
             renderCell : (params) => ( <DetailsModal params={params.row} />)
         },
         {
-            field : "Actions" , headerName : "Actions" , flex : 1 ,
+            field : "Actions" , headerName : "Actions" , flex : 1 , headerAlign : "center" ,
             renderCell : (params) => (
                 <div className="flex flex-row items-center align-middle">
                     <DeleteModal params={params.row} />
@@ -346,11 +441,11 @@ const DetailsInfrastructure = () => {
                 </div>)
         },
         {
-            field : "En Panne" , headerName : "En Panne" , flex : 1 ,
+            field : "En Panne" , headerName : "En Panne" , flex : 1 , headerAlign : "center" ,
             renderCell : (params) => ( <PanneModal params={params.row} /> )
         },
         {
-            field : "Changer" , headerName : "Changer" , flex : 1 ,
+            field : "Changer" , headerName : "Changer" , flex : 1 , headerAlign : "center" ,
             renderCell : (params) => ( <ChangerModal params={params.row} /> )
         }
     ];
@@ -361,6 +456,7 @@ const DetailsInfrastructure = () => {
         { id: 2, departement: 'Administrative', typeParc: "Photocopieuse", salle: "Bureau Directeur" , marque : "Bizhub Konica Minolta" , source : "AAER" },
         { id: 3, departement: 'Administrative', typeParc: "PC fixe", salle: "Bureau Directeur" , marque : "HP Compaq" , stockage : "300GO" , ram : "3GO" , cpu : "Pentium R Dual Core" , source : "AAER" },
     ];
+
 
     return(
         <div class="container" id="school">
@@ -408,28 +504,35 @@ const DetailsInfrastructure = () => {
                             </div>
                         </div>
                     </div>
-                    <div class='outer-block-body' id="school-body">
-                        <div class="w-full flex justify-center items-center mb-3">
-                            <div class="h-10 w-full flex justify-between" action="#result">
-                                <input class="w-full mr-0" name="search" type="text" placeholder="Recherche Par N˚ d'inventaire ou Marque" aria-label="Search" required/>
-                                <button class="btn btn-primary px-4" title="search" type="submit">
-                                    <i class="fas fa-search"></i>
-                                </button>
+                    {   rows.length > 0 ? (
+                        <div class='outer-block-body' id="school-body">
+                            <div class="w-full flex justify-center items-center mb-3">
+                                <div class="h-10 w-full flex justify-between" action="#result">
+                                    <input class="w-full mr-0" name="search" type="text" placeholder="Recherche Par N˚ d'inventaire ou Marque" aria-label="Search" required/>
+                                    <button class="btn btn-primary px-4" title="search" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                                <button class="btn btn-primary px-4 ml-1 h-10"  ><i class="fas fa-times"></i></button>
                             </div>
-                            <button class="btn btn-primary px-4 ml-1 h-10"  ><i class="fas fa-times"></i></button>
+                            
+                            <div style={{ height: 400, width: '100%' }}>
+                                <DataGrid
+                                    rows={rows}
+                                    columns={columns}
+                                    pageSize={5}
+                                    rowsPerPageOptions={[5]}
+                                    checkboxSelection
+                                />
+                            </div>
                         </div>
-                        <h3> <img src="{{asset('/img/svg/void.svg')}}" class="mx-auto h-44 w-44 mt-5" alt="" /> </h3>
-                        <p class="text-center font-semibold text-gray-500 my-5 text-2xl">Rien n'a été trouvé</p>
-                        <div style={{ height: 400, width: '100%' }}>
-                            <DataGrid
-                                rows={rows}
-                                columns={columns}
-                                pageSize={5}
-                                rowsPerPageOptions={[5]}
-                                checkboxSelection
-                            />
+                    ) : (
+                        <div>
+                            <img src={".../BXqufpGLvxfvtH3k/void.svg"} class="mx-auto h-44 w-44 mt-5" alt="" />
+                            <p class="text-center font-semibold text-gray-500 my-5 text-2xl">Rien n'a été trouvé</p>
                         </div>
-                    </div>
+                    )}
+                    
                 </div>
             </div>
         </div>

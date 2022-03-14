@@ -11,7 +11,7 @@ const SideBar = () => {
     }
    
     return (
-            <div className="sidebar text-center hidden lg:block">
+            <div className="sidebar text-center ">
                 <div className="top-menu">
                     <ul>
                         <li class="admin-front">
