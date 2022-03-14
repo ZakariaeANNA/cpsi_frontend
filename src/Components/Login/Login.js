@@ -4,6 +4,7 @@ import { useDispatch , useSelector } from "react-redux";
 import { login } from "../../redux/actions/index";
 import { useAlert } from 'react-alert'
 import { useHistory } from "react-router-dom";
+import {NotificationManager} from 'react-notifications';
 
 const Login = () => {
     const history = useHistory();
@@ -15,6 +16,7 @@ const Login = () => {
 
     const handleLogin = (event) =>{
         event.preventDefault();
+        NotificationManager.error(null,"Failed Authentification", 5000);
         const User = { username : userName , password : password }
         console.log(User);
         dispatch(login(User));
