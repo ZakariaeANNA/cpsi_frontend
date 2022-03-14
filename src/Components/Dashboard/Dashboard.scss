@@ -473,3 +473,80 @@ input:checked ~ .dot {
     font-size: 18px;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// sections
+.app-informatique-index,.app-informatique-index-departement, .section-profile,.section-pannes , .section-statistique{
+  h5{
+    font-size: 20px;
+  }
+  .card-departement, .card-pannes, .card-profile, .card-statistique{
+    border-radius: 3px;
+    border: 1px solid $border-color;
+    box-shadow: -4px -3px 85px 0px $blue-box-shadow;
+  }
+  .card-statistique{
+    margin-bottom: 55px;
+  }
+}
+.card{
+  border-radius: 3px;
+  border: 1px solid $border-color;
+  box-shadow: -4px -3px 85px 0px rgba(226, 226, 226, 0.151);
+  .index-list{
+    padding: 15px 20px;
+    &:not(:last-child){
+      border-bottom: 1px solid $border-color;
+    }
+    .items{
+      color: $fourth-color;
+      font-weight: 500;
+    }
+  }
+}
+// cards
+.card-shadow{
+  border-radius: 3px;
+  border: 1px solid $border-color;
+  height: 130px;
+  box-shadow: -4px -3px 85px 0px $blue-box-shadow;
+  &:hover {
+    box-shadow: -4px -3px 85px 0px darken($color: $blue-box-shadow, $amount: 20%);
+  }
+  .card-body{
+    height: 80px;
+  }
+}
+.card-header{
+  background-color: transparent;
+  border-bottom: 1px solid $border-color;
+}
+.card-footer{
+  background: transparent;
+  height: 40px;
+  border-top: 1px solid $border-color;
+}
+// end cards

@@ -4,7 +4,6 @@ import { School , Visibility , Edit , Delete , PowerSettingsNew , ChangeCircle, 
 import { DataGrid } from '@mui/x-data-grid';
 import React,{ useState } from "react";
 import IconButton from '@mui/material/IconButton';
-import Box from '@mui/material/Box';
 import { TextField } from "@mui/material";
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -29,6 +28,9 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
+import { AddCircle } from "@mui/icons-material";
+import { useSelector } from "react-redux";
+
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -417,10 +419,111 @@ const ChangerModal = ({params}) => {
     );
 }
 
+const AddModal = ({params}) => {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <div>
+      <button className="btn btn-primary ml-1 h-10 w-full px-2 " onClick={handleClickOpen}> <AddCircle /></button>
+      <BootstrapDialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={open}
+        fullWidth
+        maxWidth="lg" 
+      >
+        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+          Ajouter Équipement Informatique
+        </BootstrapDialogTitle>
+        <DialogContent dividers>
+        <form className="p">
+            <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">La Salle</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="Source"
+                >
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+            </FormControl>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Type d'equipement d'informatique</InputLabel>
+              <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Type d'equipement d'informatique"
+              >
+                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
+          </FormControl>
+          <TextField id="outlined-basic" label="Marque et spécification" variant="outlined" fullWidth/>
+          <div className="flex flex-row justify-around space-x-5">  
+            <TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} label="Nombre" fullWidth/>
+            <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Fonctionnalité</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="Fonctionnalité"
+                >
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+            </FormControl>
+            <TextField id="outlined-basic" label="N inventaire" variant="outlined" fullWidth/>
+          </div>
+          <div className="flex flex-row space-x-5 ">
+            <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Source</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="Source"
+                >
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+            </FormControl>
+            <LocalizationProvider dateAdapter={AdapterDateFns} >
+                <DatePicker
+                    fullWidth
+                    label="Date d'intervention"
+                    renderInput={(params) => <TextField {...params} />}
+                />
+            </LocalizationProvider>
+          </div>
+        </form>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose}>
+            Save changes
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
+    </div>
+  );
+}
+
 
 
 
 const DetailsInfrastructure = () => {
+
+  const user = useSelector( (state) => state.userActions )
 
     const columns = [
         { field: 'departement', headerName: 'Departement', flex : 1 , headerAlign : "center"},
@@ -459,44 +562,44 @@ const DetailsInfrastructure = () => {
 
 
     return(
-        <div class="container" id="school">
-            <div class='section-admin'>
-                <div class='outer-block mt-16 mb-14'>
-                    <div class="outer-block-header">
-                        <div class="outer-block-title flex items-center justify-between w-full">
-                            <div class="flex items-center">
+        <div className="container" id="school">
+            <div className='section-admin'>
+                <div className='outer-block mt-16 mb-14'>
+                    <div className="outer-block-header">
+                        <div className="outer-block-title flex items-center justify-between w-full">
+                            <div className="flex items-center">
                                 <School className="h-8 w-8 mr-4" />
                                 <h2>Ecole LM</h2>
                             </div>
-                            <div class="flex items-center">
-                                <span class="school-menu school-menu-dropdown">
-                                    <span id="school-menu-block-toggle" class="icon school-menu-content" onclick="schoolMenu()">
-                                        <i class="fas fa-ellipsis-h text-xl cursor-pointer"></i>
+                            <div className="flex items-center">
+                                <span className="school-menu school-menu-dropdown">
+                                    <span id="school-menu-block-toggle" className="icon school-menu-content" onclick="schoolMenu()">
+                                        <i className="fas fa-ellipsis-h text-xl cursor-pointer"></i>
                                     </span>
-                                    <div id="schoolMenuBlockContent" class="school-menu-dropdown-content">
-                                        <div class="dropdown-body">
-                                            <div class="flex items-center justify-between py-1">
-                                                <h5 class="text-sm font-semibold">Total des équipements</h5>
-                                                <h5 class="text-xs">
-                                                    <span class="font-bold text-primary">49</span>
+                                    <div id="schoolMenuBlockContent" className="school-menu-dropdown-content">
+                                        <div className="dropdown-body">
+                                            <div className="flex items-center justify-between py-1">
+                                                <h5 className="text-sm font-semibold">Total des équipements</h5>
+                                                <h5 className="text-xs">
+                                                    <span className="font-bold text-primary">49</span>
                                                 </h5>
                                             </div>
-                                            <div class="flex items-center justify-between py-1">
-                                                <h5 class="text-xs"><i class="far fa-user-circle"></i></h5>
-                                                <h5 class="text-xs">Ecole LM</h5>
+                                            <div className="flex items-center justify-between py-1">
+                                                <h5 className="text-xs"><i className="far fa-user-circle"></i></h5>
+                                                <h5 className="text-xs">Ecole LM</h5>
                                             </div>
-                                            <div class="flex items-center justify-between py-1">
-                                                <h5 class="text-xs">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
+                                            <div className="flex items-center justify-between py-1">
+                                                <h5 className="text-xs">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-key" viewBox="0 0 16 16">
                                                         <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
                                                         <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
                                                     </svg>
                                                 </h5>
-                                                <h5 class="text-xs"> 666 </h5>
+                                                <h5 className="text-xs"> 666 </h5>
                                             </div>
-                                            <div class="flex items-center justify-between py-1">
-                                                <h5 class="text-xs"><img src="{{asset('/img/svg/school.svg')}}" alt="<?=keywords?>" class="h-5 w-5 mr-4" /></h5>
-                                                <h5 class="text-xs">Ecole LM </h5>
+                                            <div className="flex items-center justify-between py-1">
+                                                <h5 className="text-xs"><img src="{{asset('/img/svg/school.svg')}}" alt="<?=keywords?>" className="h-5 w-5 mr-4" /></h5>
+                                                <h5 className="text-xs">Ecole LM </h5>
                                             </div>
                                         </div>
                                     </div>
@@ -505,15 +608,15 @@ const DetailsInfrastructure = () => {
                         </div>
                     </div>
                     {   rows.length > 0 ? (
-                        <div class='outer-block-body' id="school-body">
-                            <div class="w-full flex justify-center items-center mb-3">
-                                <div class="h-10 w-full flex justify-between" action="#result">
-                                    <input class="w-full mr-0" name="search" type="text" placeholder="Recherche Par N˚ d'inventaire ou Marque" aria-label="Search" required/>
-                                    <button class="btn btn-primary px-4" title="search" type="submit">
-                                        <i class="fas fa-search"></i>
+                        <div className='outer-block-body' id="school-body">
+                            <div className="w-full flex justify-center items-center mb-3">
+                                <div className="h-10 w-full flex justify-between" action="#result">
+                                    <input className="w-full mr-0" name="search" type="text" placeholder="Recherche Par N˚ d'inventaire ou Marque" aria-label="Search" required/>
+                                    <button className="btn btn-primary px-4" title="search" type="submit">
+                                        <i className="fas fa-search"></i>
                                     </button>
                                 </div>
-                                <button class="btn btn-primary px-4 ml-1 h-10"  ><i class="fas fa-times"></i></button>
+                                { user.role === "USER" ? <AddModal /> : null }
                             </div>
                             <div style={{ height: 400, width: '100%' }}>
                                 <DataGrid
@@ -527,8 +630,8 @@ const DetailsInfrastructure = () => {
                         </div>
                     ) : (
                         <div>
-                            <img src={".../BXqufpGLvxfvtH3k/void.svg"} class="mx-auto h-44 w-44 mt-5" alt="" />
-                            <p class="text-center font-semibold text-gray-500 my-5 text-2xl">Rien n'a été trouvé</p>
+                            <img src={".../BXqufpGLvxfvtH3k/void.svg"} className="mx-auto h-44 w-44 mt-5" alt="" />
+                            <p className="text-center font-semibold text-gray-500 my-5 text-2xl">Rien n'a été trouvé</p>
                         </div>
                     )}
                     
