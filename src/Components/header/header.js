@@ -37,10 +37,14 @@ function Header(){
         {
             setIcon('far fa-user-circle')
             setTitle('Gestion des Utilisateurs')
-        }else
+        }else if(id==='GestionUtilisateur')
         {
             setIcon('fas fa-laptop-code')
             setTitle('Gestion Parc Informatique')
+        }else
+        {
+            setIcon('far fa-user-circle')
+            setTitle('Profile Personnel')
         }
     }
     return(
@@ -65,7 +69,7 @@ function Header(){
                             <span id="applications-block-toggle" className="icon applications-content" onClick={()=>changeStat()}>
                                 <img id="apps" src={'../svg/apps-svgrepo-com.svg'} alt='apps'/>
                             </span>
-                            <div id="applications-block-content" className="dropdown-content right: 10px; width:250px;">
+                            <div id="applications-block-content" className="dropdown-content" style={{right: "10px", width:"250px"}}>
                             <div className="dropdown-header">
                                 <ul className="dropdown-list">
                                     <li className="with-icon" onClick={()=>changeTitles("GestionParc")}>
@@ -73,7 +77,7 @@ function Header(){
                                             <a className="transform hover:translate-x-1 transition duration-300" target="_blank" href="{{ route('home.index') }}">
                                                 <div className="flex justify-start items-center">
                                                 <div><img src={'../svg/laptop-svgrepo-com.svg'} className="h-4 mr-4" alt=""/></div>
-                                                <span className="text-sm">Gestion Parc Informatique</span>
+                                                    <span className="text-sm">Gestion Parc Informatique</span>
                                                 </div>
                                             </a>
                                         </Link>
@@ -119,12 +123,14 @@ function Header(){
                     <img src={"../BXqufpGLvxfvtH3k/1644501375.svg"} className="rounded-full border-2 border-gray-100" alt=""/>
                     </div>
 
-                    <div id="user-block-content" className="dropdown-content">
+                    <div id="user-block-content" className="dropdown-content w-10">
                     <div className="dropdown-header">
                         <span className="directeur-name">
                         <span>hello2</span>
                         </span>
-                        <h6 className="code-gresa">Code GRESA: <a href="{{route('app.profile.index.home')}}" target="_blank">5343L</a></h6>
+                        <Link to={'/profile'}> 
+                            <h6 onClick={()=>changeTitles("Profile")} className="code-gresa">Code GRESA: <div  target="_blank">5343L</div></h6>
+                        </Link>
                     </div>
                     <div className="dropdown-body">
                         <ul className="dropdown-list">

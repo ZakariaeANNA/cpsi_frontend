@@ -630,7 +630,7 @@ const DetailsInfrastructure = () => {
                         </div>
                     ) : (
                         <div>
-                            <img src={".../BXqufpGLvxfvtH3k/void.svg"} className="mx-auto h-44 w-44 mt-5" alt="" />
+                            <img src={".../svg/void.svg"} className="mx-auto h-44 w-44 mt-5" alt="" />
                             <p className="text-center font-semibold text-gray-500 my-5 text-2xl">Rien n'a été trouvé</p>
                         </div>
                     )}
